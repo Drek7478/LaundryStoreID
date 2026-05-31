@@ -1,0 +1,38 @@
+# Laragon / XAMPP Specific
+*.log
+logs/
+tmp/
+temp/
+
+# Database
+*.sqlite
+*.db
+
+# Uploaded Files
+uploads/bukti/*
+!uploads/bukti/.htaccess
+!uploads/bukti/index.html
+assets/img/produk/*
+!assets/img/produk/.htaccess
+!assets/img/produk/index.html
+!assets/img/produk/default.jpg
+
+# Dependencies
+vendor/
+node_modules/
+composer.lock
+package-lock.json
+
+# IDE / Editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment
+.env
+.env.local
+.env.production
