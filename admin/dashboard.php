@@ -128,43 +128,59 @@ $pesanan_terbaru = $stmt->fetchAll();
             </thead>
             <tbody>
                 <?php if (count($pesanan_terbaru) > 0): ?>
-                    <?php foreach ($pesanan_terbaru as $p): 
-                        $badge_class = ''; $icon = '';
+                    <?php foreach ($pesanan_terbaru as $p):
+                        $badge_class = '';
+                        $icon = '';
                         switch ($p['status']) {
-                            case 'menunggu_pembayaran': $badge_class = 'badge-pending'; $icon = 'fa-clock'; break;
-                            case 'menunggu_konfirmasi': $badge_class = 'badge-confirming'; $icon = 'fa-search'; break;
-                            case 'dikonfirmasi': $badge_class = 'badge-confirmed'; $icon = 'fa-check-circle'; break;
-                            case 'selesai': $badge_class = 'badge-done'; $icon = 'fa-trophy'; break;
-                            case 'dibatalkan': $badge_class = 'badge-cancelled'; $icon = 'fa-times-circle'; break;
+                            case 'menunggu_pembayaran':
+                                $badge_class = 'badge-pending';
+                                $icon = 'fa-clock';
+                                break;
+                            case 'menunggu_konfirmasi':
+                                $badge_class = 'badge-confirming';
+                                $icon = 'fa-search';
+                                break;
+                            case 'dikonfirmasi':
+                                $badge_class = 'badge-confirmed';
+                                $icon = 'fa-check-circle';
+                                break;
+                            case 'selesai':
+                                $badge_class = 'badge-done';
+                                $icon = 'fa-trophy';
+                                break;
+                            case 'dibatalkan':
+                                $badge_class = 'badge-cancelled';
+                                $icon = 'fa-times-circle';
+                                break;
                         }
                     ?>
-                    <tr>
-                        <td>
-                            <span style="font-family: 'Courier New', monospace; font-size: 13px; background: #F5F3FF; padding: 4px 8px; border-radius: 6px;">
-                                <?php echo $p['kode_pesanan']; ?>
-                            </span>
-                        </td>
-                        <td>
-                            <div class="d-flex align-items-center gap-2">
-                                <div class="avatar-sm"><?php echo strtoupper(substr($p['nama_user'], 0, 1)); ?></div>
-                                <span><?php echo $p['nama_user']; ?></span>
-                            </div>
-                        </td>
-                        <td><strong>Rp <?php echo number_format($p['total_harga'], 0, ',', '.'); ?></strong></td>
-                        <td>
-                            <span class="badge badge-status <?php echo $badge_class; ?>">
-                                <span class="status-dot"></span>
-                                <i class="fas <?php echo $icon; ?> me-1"></i> 
-                                <?php echo ucwords(str_replace('_', ' ', $p['status'])); ?>
-                            </span>
-                        </td>
-                        <td><small><?php echo date('d/m/Y H:i', strtotime($p['created_at'])); ?></small></td>
-                        <td>
-                            <a href="pesanan/detail.php?id=<?php echo $p['id']; ?>" class="btn btn-sm" style="background: var(--color-primary-50); color: var(--color-primary); border-radius: 8px;">
-                                <i class="fas fa-eye me-1"></i> Detail
-                            </a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>
+                                <span style="font-family: 'Courier New', monospace; font-size: 13px; background: #F5F3FF; padding: 4px 8px; border-radius: 6px;">
+                                    <?php echo $p['kode_pesanan']; ?>
+                                </span>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="avatar-sm"><?php echo strtoupper(substr($p['nama_user'], 0, 1)); ?></div>
+                                    <span><?php echo $p['nama_user']; ?></span>
+                                </div>
+                            </td>
+                            <td><strong>Rp <?php echo number_format($p['total_harga'], 0, ',', '.'); ?></strong></td>
+                            <td>
+                                <span class="badge badge-status <?php echo $badge_class; ?>">
+                                    <span class="status-dot"></span>
+                                    <i class="fas <?php echo $icon; ?> me-1"></i>
+                                    <?php echo ucwords(str_replace('_', ' ', $p['status'])); ?>
+                                </span>
+                            </td>
+                            <td><small><?php echo date('d/m/Y H:i', strtotime($p['created_at'])); ?></small></td>
+                            <td>
+                                <a href="pesanan/detail.php?id=<?php echo $p['id']; ?>" class="btn btn-sm" style="background: var(--color-primary-50); color: var(--color-primary); border-radius: 8px;">
+                                    <i class="fas fa-eye me-1"></i> Detail
+                                </a>
+                            </td>
+                        </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
